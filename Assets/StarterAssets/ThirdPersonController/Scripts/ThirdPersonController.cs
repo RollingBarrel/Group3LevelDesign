@@ -83,9 +83,10 @@ namespace StarterAssets
         private float _speed;
         private float _animationBlend;
         private float _targetRotation = 0.0f;
-        private float _rotationVelocity;
-        private float _verticalVelocity;
+        public float _rotationVelocity;
+        public float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        public Vector3 targetDirection = Vector3.zero;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -102,8 +103,8 @@ namespace StarterAssets
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
-        private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        public CharacterController _controller;
+        public StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
@@ -122,6 +123,10 @@ namespace StarterAssets
             }
         }
 
+        public CharacterController GetController()
+        {
+            return _controller;
+        }
 
         private void Awake()
         {
@@ -265,7 +270,7 @@ namespace StarterAssets
             }
 
 
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+            targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
             // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
