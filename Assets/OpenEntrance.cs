@@ -1,28 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class OpenEntrance : MonoBehaviour
 {
-    public float height;
+    public float movement;
     public float speed = 1;
 
 
-    Transform door;
+    Transform doorLeft;
+    float doorLeftInitialPos;
+    Transform doorRight;
+    float doorRightInitialPos;
+
     bool inRange;
-    float doorInitialPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        door = transform.GetChild(0);
-        doorInitialPos = door.position.y;
+        doorLeft = transform.GetChild(0);
+        doorLeftInitialPos = doorLeft.position.z;
+        doorRight = transform.GetChild(1);
+        doorRightInitialPos = doorRight.position.z;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveDoor(door, inRange);
+        MoveDoor(doorRight, doorLeft, inRange);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,20 +47,25 @@ public class OpenEntrance : MonoBehaviour
         }
     }
 
-    void MoveDoor(Transform door, bool inRange)
+    void MoveDoor(Transform right, Transform left, bool inRange)
     {
+        float doorPosZ = left.position.z;
+        Vector3 move = new Vector3(0, 0, speed * Time.deltaTime);
+
         if (inRange)
         {
-            if (door.position.y > doorInitialPos - height)
+            if (doorPosZ > doorLeftInitialPos - movement)
             {
-                door.position -= new Vector3(0, speed * Time.deltaTime, 0);
+                left.position -= move;
+                right.position += move;
             }
         }
         else
         {
-            if (door.position.y < doorInitialPos)
+            if (doorPosZ < doorLeftInitialPos)
             {
-                door.position += new Vector3(0, speed * Time.deltaTime, 0);
+                left.position += move;
+                right.position -= move;
             }
         }
     }
