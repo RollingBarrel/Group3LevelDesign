@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerRespawn : MonoBehaviour
 {
     public float treshold;
+    public float x= -46.75f;
+    public float y= 0.66f;
+    public float z= -36.37f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +19,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         if(transform.position.y < treshold)
         {
-            transform.position = new Vector3(-46.03f,0.156f, -26.76f);
+            transform.position = new Vector3(x,y, z);
         }
     }
 }
