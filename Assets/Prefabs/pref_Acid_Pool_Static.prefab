@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6431431152898923016}
   m_Layer: 0
   m_Name: pref_Acid_Pool_Static
-  m_TagString: Untagged
+  m_TagString: Acid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8467844932056883550}
   m_Layer: 0
   m_Name: Acid_Pool_Static
-  m_TagString: Untagged
+  m_TagString: Acid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
